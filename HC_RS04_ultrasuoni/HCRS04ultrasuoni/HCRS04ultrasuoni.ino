@@ -16,22 +16,28 @@ void loop() {
 digitalWrite( triggerPort, LOW );
  
 //invia un impulso di 10microsec su trigger
-delayMicroseconds (10)
+delayMicroseconds (10);
 digitalWrite( triggerPort, HIGH );
 delayMicroseconds( 10 );
 digitalWrite( triggerPort, LOW );
  
 long duration = pulseIn( echoPort, HIGH );
+
+long t = 22; //t in centigradi
+Serial.print( t );Serial.println( " Centigradi " );
+
+double vcm = (331.4 + 0.62 * t) / 10000; //velocità già in cm/ms per dopo
+Serial.print( vcm );Serial.println( " cm/ms " );
  
-long r = 0.034 * duration / 2;
+double r = vcm * duration / 2; //velocità per spazio
  
-Serial.print( "durata: " );
+Serial.print( "durata dell'impulso: " );
 Serial.print( duration );
 Serial.print( " , " );
 Serial.print( "distanza: " );
  
 //dopo 38ms è fuori dalla portata del sensore
-if( duration > 38000 ) Serial.println( "fuori portata");
+if( duration > 400000 ) Serial.println( "fuori portata");
 else { Serial.print( r ); Serial.println( "cm" );}
  
 //aspetta 1.5 secondi
