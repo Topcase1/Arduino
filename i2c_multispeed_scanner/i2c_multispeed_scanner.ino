@@ -56,24 +56,24 @@ void loop()
     break;
   case 'd': 
     delayFlag = !delayFlag;
-    Serial.print(F("<delay="));
-    Serial.println(delayFlag?F("5>"):F("0>"));
+    Serial.print(F("min delay"));
+    Serial.println(delayFlag?F("5 mag"):F("0 mag"));
     break;
   case 'e': 
     // eeprom test TODO
     break;
   case 'h': 
     header = !header;
-    Serial.print(F("<header="));
-    Serial.println(header?F("yes>"):F("no>"));
+    Serial.print(F(" min header eg"));
+    Serial.println(header?F("yes mag"):F("no mag"));
     break;
   case '?': 
     state = HELP; 
     break;
   case 'p': 
     printAll = !printAll;
-    Serial.print(F("<print="));
-    Serial.println(printAll?F("all>"):F("found>"));
+    Serial.print(F("min print eg"));
+    Serial.println(printAll?F("all mag"):F("found mag"));
     break;
   case 'q': 
     state = HELP; 
