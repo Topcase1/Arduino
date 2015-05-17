@@ -1,19 +1,11 @@
-/* Prof. Michele Maffucci 
-   27.09.2014 
-  
-   Uso di un led RGB 
-   Spegnimento graduale del LED Verde 
-  
-   Questo codice è di dominio pubblico  
-*/  
-  
+
 // pin a cui collegare i piedini del LED RGB  
 const int VERDE = 6;  
 const int BLU = 7;  
 const int ROSSO = 5;  
   
 // tempo di transizione colore  
-const int delayTime = 20;  
+const int delayTime = 40;  
   
 void setup() {  
   
@@ -51,8 +43,23 @@ void loop() {
   
     analogWrite( VERDE, 255 - ValVerde );  
   
-    // attesa di 20 ms per percepire il colore  
+    // attesa di 40 ms per percepire il colore  
     delay( delayTime );  
-  }  
+  }
+  //ora ValVerde è 0
+    for( int i = 0 ; i < 255 ; i += 1 ){  
+  
+    ValVerde += 1;  
+  
+    /* ad ogni ciclio la differenza 
+     255 - ValVerde AUMENTA 
+     provocando un graduale spegnimento del verde 
+     */  
+  
+    analogWrite( VERDE, 255 - ValVerde );  
+  
+    // attesa di 40 ms per percepire il colore  
+    delay( delayTime );  
+}  
 }  
 
