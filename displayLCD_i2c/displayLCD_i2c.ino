@@ -3,6 +3,8 @@
 
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address   
 
+// info @ http://www.dx.com/p/lcd1602-adapter-board-w-iic-i2c-interface-black-works-with-official-arduino-boards-216865#.VWOGoFXtlHx
+
 #define BACKLIGHT_PIN     13
 
 void setup()
