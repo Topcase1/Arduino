@@ -1,27 +1,63 @@
-#include <Wire.h> 
+//#include <Wire.h> 
+//#include <LiquidCrystal_I2C.h>
+
+//     LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address   
+
+/*
+** Example Arduino sketch for SainSmart I2C LCD Screen 16x2
+** based on https://bitbucket.org/celem/sainsmart-i2c-lcd/src/3adf8e0d2443/sainlcdtest.ino
+** by
+** Edward Comer
+** LICENSE: GNU General Public License, version 3 (GPL-3.0)
+
+** This example uses F Malpartida's NewLiquidCrystal library. Obtain from:
+** https://bitbucket.org/fmalpartida/new-liquidcrystal 
+
+** Modified - Ian Brennan ianbren at hotmail.com 23-10-2012 to support Tutorial posted to Arduino.cc
+
+** Written for and tested with Arduino 1.0
+**
+** NOTE: Tested on Arduino Uno whose I2C pins are A4==SDA, A5==SCL
+
+*/
+#include <Wire.h>
+#include <LCD.h>
 #include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address   
+#define I2C_ADDR    0x27 // <<----- Add your address here.  Find it from I2C Scanner
+#define BACKLIGHT_PIN     3
+#define En_pin  2
+#define Rw_pin  1
+#define Rs_pin  0
+#define D4_pin  4
+#define D5_pin  5
+#define D6_pin  6
+#define D7_pin  7
 
-// info @ http://www.dx.com/p/lcd1602-adapter-board-w-iic-i2c-interface-black-works-with-official-arduino-boards-216865#.VWOGoFXtlHx
+int n = 1;
 
-#define BACKLIGHT_PIN     13
+LiquidCrystal_I2C	lcd(I2C_ADDR,En_pin,Rw_pin,Rs_pin,D4_pin,D5_pin,D6_pin,D7_pin);
 
 void setup()
 {
-  // Switch on the backlight
- // pinMode ( BACKLIGHT_PIN, OUTPUT );
- // digitalWrite ( BACKLIGHT_PIN, LOW );
-  
-  lcd.begin(16,2);               // initialize the lcd 
+ lcd.begin (16,2); //  <<----- My LCD was 16x2
 
-  lcd.home ();                   // go home
-  lcd.print("Ciao");  
-  //lcd.setCursor ( 0, 1 );        // go to the next line
-  //lcd.print (" WORLD!  ");      
+ 
+// Switch on the backlight
+lcd.setBacklightPin(BACKLIGHT_PIN,POSITIVE);
+lcd.setBacklight(HIGH);
+lcd.home (); // go home
+
+ lcd.print("SainSmartI2C16x2");  
 }
 
 void loop()
 {
-
-}
+ // Backlight on/off every 3 seconds
+ lcd.setCursor (0,1);        // go to start of 2nd line
+ lcd.print(n++,DEC);
+ lcd.setBacklight(LOW);      // Backlight off
+ delay(3000);
+ lcd.setBacklight(HIGH);     // Backlight on
+ delay(3000);
+ }
