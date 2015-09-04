@@ -1,0 +1,12 @@
+sensor_volt = 0.22V
+R0 = 2.21
+sensor_volt = 0.22V
+R0 = 2.21
+sensor_volt = 0.22V
+R0 = 2.22
+sensor_volt = 0.22V
+R0 = 2.22
+sensor_volt = 0.22V
+R0 = 2.22
+sensor_volt = 0.22V
+R0 = 2.22
