@@ -20,7 +20,7 @@
 #include <LCD.h>
 #include <LiquidCrystal_I2C.h>
 
-#define I2C_ADDR    0x27 // <<----- Add your address here.  Find it from I2C Scanner
+#define I2C_ADDR    0x3F // <<----- Add your address here.  Find it from I2C Scanner
 #define BACKLIGHT_PIN     3
 #define En_pin  2
 #define Rw_pin  1
